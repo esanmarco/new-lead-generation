@@ -1,3 +1,4 @@
+import SessionProvider from "@/app/components/sessionProvider";
 import "./globals.css";
 
 export const metadata = {
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="wireframe">
       <body>
-        <div className="prose w-full max-w-none">{children}</div>
+        <div className="prose w-full max-w-none">
+          <SessionProvider>{children}</SessionProvider>
+        </div>
       </body>
     </html>
   );
