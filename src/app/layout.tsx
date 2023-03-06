@@ -1,4 +1,5 @@
 import SessionProvider from "@/app/components/sessionProvider";
+import QueryWrapper from "./components/queryWrapper";
 import "./globals.css";
 
 export const metadata = {
@@ -14,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="wireframe">
       <body>
-        <div className="prose w-full max-w-none">
-          <SessionProvider>{children}</SessionProvider>
+        <div className="w-full prose max-w-none">
+          <SessionProvider>
+            <QueryWrapper>{children}</QueryWrapper>
+          </SessionProvider>
         </div>
       </body>
     </html>
