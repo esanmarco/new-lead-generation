@@ -1,6 +1,10 @@
-import { getServerSession } from "next-auth";
+import NewLead from "./components/newLead";
 
 export default async function Home() {
-  const session = await getServerSession();
-  return <h1>Dashboard</h1>;
+  return (
+    <>
+      <h1>Dashboard</h1>
+      <NewLead />
+    </>
+  );
 }
