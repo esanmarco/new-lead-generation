@@ -14,7 +14,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  await getUser();
+  getUser();
   return (
     <html lang="en" data-theme="wireframe">
       <body>
