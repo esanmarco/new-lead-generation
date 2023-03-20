@@ -1,8 +1,9 @@
 "use client";
 
 import { isFormValid } from "@/server/models/newLead";
-import { useNewLeadStore } from "@/stores/newLeadStore";
+import { defaultStore, useNewLeadStore } from "@/stores/newLeadStore";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 const fields = [
   { label: "Name", name: "name", type: "text", placeholder: "Full Name" },
@@ -23,19 +24,32 @@ const fields = [
 
 export default function NewLead() {
   const newLead = useNewLeadStore();
+  const { refresh } = useRouter();
 
   const { mutate, isLoading } = useMutation(["newlead"], async () => {
-    return await (
+    const res = await (
       await fetch(`/api/leads`, {
         method: "POST",
         body: JSON.stringify(newLead),
       })
     ).json();
+
+    useNewLeadStore.setState(defaultStore);
+    refresh();
+    (document.getElementById("new-lead") as HTMLInputElement).checked = false;
+
+    return res;
   });
 
   const handleInputUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     useNewLeadStore.setState({ [name]: value });
+  };
+
+  const fieldValue = (name: string) => {
+    return (
+      Object.entries(newLead).find(([key, _value]) => key === name)?.[1] || ""
+    );
   };
 
   return (
@@ -64,6 +78,7 @@ export default function NewLead() {
                 placeholder={field.placeholder}
                 className="w-full input input-bordered"
                 onChange={handleInputUpdate}
+                value={fieldValue(field.name)}
               />
             </div>
           ))}

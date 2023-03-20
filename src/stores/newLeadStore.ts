@@ -1,9 +1,13 @@
 import { NewLead } from "@/server/models/newLead";
 import { create } from "zustand";
 
-export const useNewLeadStore = create<NewLead>(() => ({
+export const defaultStore = {
   name: "",
   email: "",
   phone: "",
   companyName: "",
+};
+
+export const useNewLeadStore = create<NewLead>(() => ({
+  ...defaultStore,
 }));

@@ -29,5 +29,5 @@ export async function POST(request: Request) {
   });
 
   // return the lead
-  return NextResponse.json({ lead, status: 200 });
+  return NextResponse.json(lead);
 }
