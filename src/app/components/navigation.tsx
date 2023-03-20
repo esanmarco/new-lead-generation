@@ -1,5 +1,6 @@
 import { asyncComponent } from "@/utils/asyncfix";
 import { getServerSession } from "next-auth";
+import Signout from "./signout";
 
 async function Navigation() {
   const session = await getServerSession();
@@ -22,7 +23,7 @@ async function Navigation() {
             className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Logout</a>
+              <Signout />
             </li>
           </ul>
         </div>

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const newLeadSchema = z.object({
+  id: z.string().uuid().optional(),
   name: z.string().nonempty(),
   email: z.string().email(),
   phone: z.string().nonempty(),
