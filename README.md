@@ -1,39 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Guide to Setting Up the Project
 
-## Getting Started
+Follow these steps to set up the project and prepare your environment:
 
-First, run the development server:
+### Clone this repo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Clone this repository to your local machine.
+
+### Install Dependencies
+
+Run `npm install` in the terminal to install the required dependencies.
+
+### Configure Environment Variables
+
+Create a new `.env` file in the project root directory and add the following keys:
+
+```
+DISCORD_ID=
+DISCORD_SECRET=
+
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000/
+
+DATABASE_URL=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Set Up Planetscale Database
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Signup for a [Planetscale](https://planetscale.com/) account and create a new database
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Connect Planetscale Database with Prisma
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Click the "Connect" button in your Planetscale account and ensure the dropdown is set to "Prisma."
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Add Database URL to Environment File
 
-## Learn More
+Copy the `DATABASE_URL` value from Planetscale and paste it in your `.env` file.
 
-To learn more about Next.js, take a look at the following resources:
+### Register a New Discord Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Signup for a Discord account, navigate to [Discord Dev Portal](https://discord.com/developers/applications), and create a new application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Configure `DISCORD_ID`
 
-## Deploy on Vercel
+Click on the "OAuth2" navigation item, copy the `CLIENT ID`, and paste it as the value of `DISCORD_ID` in your .env file.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Configure `DISCORD_SECRET`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# new-lead-generation
+Click on the "Reset Secret" button, copy the generated value, and paste it as the value of `DISCORD_SECRET` in your `.env` file.
+
+### Add Redirect URL for Discord
+
+Add a new redirect link and paste the following URL into the input field:
+`http://localhost:3000/api/auth/callback/discord`
+
+### Generate `NEXTAUTH_SECRET`
+
+Open a terminal and run the following command: `openssl rand -base64 32`
+Copy the output and paste it as the value of `NEXTAUTH_SECRET` in your `.env` file.
+
+### Push Prisma Schema to Database
+
+Run the following command in the terminal: `npx prisma db push`
+
+### Start the Development Server
+
+Run `npm run dev` to start the development server.
+
+### Test Your Setup
+
+Try to log in to the application. If you can access the dashboard screen, your setup is complete.

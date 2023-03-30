@@ -8,6 +8,6 @@ export const defaultStore = {
   companyName: "",
 };
 
-export const useNewLeadStore = create<NewLead>(() => ({
+export const useNewLeadStore = create<NewLead>()(() => ({
   ...defaultStore,
 }));
