@@ -1,4 +1,4 @@
-## Guide to Setting Up the Project
+# Guide to Setting Up the Project
 
 Follow these steps to set up the project and prepare your environment:
 
