@@ -23,6 +23,17 @@ model Lead {
   companyName String
   createdAt   DateTime  @default(now())
   User        User?     @relation(fields: [userId], references: [id])
+  notes       Note[]
   userId      String?
   @@index([userId])
+}
+
+model Note {
+  id        String    @id @default(cuid())
+  content   String
+  createdAt DateTime  @default(now())
+  Lead      Lead?     @relation(fields: [leadId], references: [id])
+  leadId    String?
+  
+  @@index([leadId])
 }

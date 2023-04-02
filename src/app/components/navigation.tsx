@@ -1,5 +1,6 @@
 import { asyncComponent } from "@/utils/asyncfix";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import Signout from "./signout";
 
 async function Navigation() {
@@ -7,9 +8,12 @@ async function Navigation() {
   return (
     <div className="shadow navbar bg-base-100">
       <div className="flex-1">
-        <a className="text-xl no-underline normal-case btn btn-ghost">
+        <Link
+          href="/"
+          className="text-xl no-underline normal-case btn btn-ghost"
+        >
           Lead Generation
-        </a>
+        </Link>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">

@@ -28,7 +28,7 @@ export default function NewLead() {
 
   const { mutate, isLoading } = useMutation(["newlead"], async () => {
     const res = await (
-      await fetch(`/api/leads`, {
+      await fetch(`/api/leads/new`, {
         method: "POST",
         body: JSON.stringify(newLead),
       })
@@ -70,7 +70,7 @@ export default function NewLead() {
           </label>
 
           {fields.map((field) => (
-            <div className="w-full mb-2" key={field.name}>
+            <fieldset className="w-full mb-2" key={field.name}>
               <label>{field.label}</label>
               <input
                 type={field.type}
@@ -80,7 +80,7 @@ export default function NewLead() {
                 onChange={handleInputUpdate}
                 value={fieldValue(field.name)}
               />
-            </div>
+            </fieldset>
           ))}
 
           <button

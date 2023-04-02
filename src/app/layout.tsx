@@ -19,7 +19,7 @@ export default async function RootLayout({
     <html lang="en" data-theme="wireframe">
       <body>
         <Navigation />
-        <div className="w-full p-8 prose max-w-none">
+        <div className="w-full prose max-w-none">
           <SessionProvider>
             <QueryWrapper>{children}</QueryWrapper>
           </SessionProvider>

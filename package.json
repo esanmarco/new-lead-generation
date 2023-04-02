@@ -18,7 +18,7 @@
     "daisyui": "^2.51.2",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
-    "next": "latest",
+    "next": "^13.2.4",
     "next-auth": "^4.19.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
