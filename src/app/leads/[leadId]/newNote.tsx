@@ -13,6 +13,7 @@ export default function NewNote({ leadId }: { leadId: string }) {
         body: JSON.stringify({ content: note, leadId }),
       });
       refresh();
+      (document.getElementsByName("note")[0] as HTMLTextAreaElement).value = "";
     },
   });
 
@@ -24,7 +25,6 @@ export default function NewNote({ leadId }: { leadId: string }) {
     }
 
     mutate(value);
-    (document.getElementsByName("note")[0] as HTMLTextAreaElement).value = "";
   };
 
   return (
