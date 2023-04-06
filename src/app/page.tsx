@@ -19,7 +19,7 @@ export default async function Home() {
   const leads = await getLeads();
 
   return (
-    <>
+    <div className="p-8">
       <h1>Dashboard</h1>
       <NewLead />
 
@@ -46,20 +46,20 @@ export default async function Home() {
               </svg>
             </Link>
             <div className="card-body">
-              <h2 className="m-0 card-title">{lead.name}</h2>
-              <p className="m-0 card-subtitle">{lead.companyName}</p>
-              <ul className="m-0">
-                <li>
+              <h2 className="m-0 truncate card-title">{lead.name}</h2>
+              <p className="m-0 truncate card-subtitle">{lead.companyName}</p>
+              <ul className="p-0 m-0 list-none">
+                <li className="p-0 truncate">
                   <a href={`mailto:${lead.email}`} className="text-accent">
                     {lead.email}
                   </a>
                 </li>
-                <li>{lead.phone}</li>
+                <li className="p-0 truncate">{lead.phone}</li>
               </ul>
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

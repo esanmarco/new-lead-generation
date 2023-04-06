@@ -1,36 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { getServerSession } from "next-auth";
+import { getLeadDetailsById } from "@/server/leads";
 import Link from "next/link";
 import NewNote from "./newNote";
-
-const getLeadDetailsById = async (leadId: string) => {
-  const prisma = new PrismaClient();
-  const session = await getServerSession();
-  if (!session?.user) {
-    return null;
-  }
-
-  const userId = await prisma.user
-    .findUnique({
-      where: { email: session?.user?.email ?? "" },
-    })
-    .then((user) => user?.id);
-
-  if (!userId) {
-    return null;
-  }
-
-  const lead = await prisma.lead.findUnique({
-    where: { id: leadId },
-    include: { notes: true },
-  });
-
-  if (userId !== lead?.userId) {
-    return null;
-  }
-
-  return lead;
-};
 
 export default async function LeadPage({
   params,
@@ -49,22 +19,20 @@ export default async function LeadPage({
   }
 
   return (
-    <div className="p-4">
-      <h1>Lead Details</h1>
-      <div className="flex flex-row justify-between h-full mt-10">
-        <div className="flex flex-col p-4 mt-5 border-r grow">
+    <div className="flex flex-row items-stretch w-full h-full">
+      <div className="flex flex-col w-2/3 p-8 overflow-y-auto lg:w-3/4">
+        <div className="max-w-lg p-4 mx-auto shadow card bg-base-200 w-fit">
           <h2>{details.name}</h2>
           <p className="text-break">Email: {details.email}</p>
           <p>Phone: {details.phone}</p>
           <p>Company: {details.companyName}</p>
         </div>
-        <div className="flex flex-col w-2/3 p-4 grow">
-          <h2>Create New Note</h2>
-          <NewNote leadId={details.id} />
-          <hr />
-          <h3>Notes:</h3>
-          {JSON.stringify(details.notes)}
-        </div>
+      </div>
+      <div className="w-1/3 p-4 overflow-y-auto border-l lg:w-1/4 border-base-200">
+        <h3>Lead Notes</h3>
+        <NewNote leadId={details.id} />
+        <hr className="my-5" />
+        {JSON.stringify(details.notes)}
       </div>
     </div>
   );
