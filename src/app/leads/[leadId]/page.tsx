@@ -1,11 +1,8 @@
 import { getLeadDetailsById } from "@/server/leads";
 import Link from "next/link";
 import NewNote from "./newNote";
-import { MdEditNote } from "react-icons/md";
 import DeleteNote from "./deleteNote";
-import LeadForm, { EditModal } from "@/app/components/leadForm";
-import { Lead } from "@prisma/client";
-import { useNewLeadStore } from "@/stores/newLeadStore";
+import { EditModal } from "@/app/components/leadForm";
 
 export default async function LeadPage({
   params,

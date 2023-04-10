@@ -78,9 +78,9 @@ export async function DELETE(request: Request) {
     });
   }
 
-  await prisma.notes.delete({
+  await prisma.lead.delete({
     where: {
-      id: body.noteId,
+      id: body.leadId,
     },
   });
 

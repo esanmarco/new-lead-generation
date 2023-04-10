@@ -15,7 +15,7 @@ export default function DeleteNote({
   const { mutate } = useMutation({
     mutationKey: ["deleteNote", noteId],
     mutationFn: async () => {
-      const res = await fetch(`/api/leads`, {
+      const res = await fetch(`/api/notes`, {
         method: "DELETE",
         body: JSON.stringify({ noteId, leadId }),
       });

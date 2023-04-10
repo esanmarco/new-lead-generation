@@ -2,6 +2,8 @@ import { NewLead as NewLeadType } from "@/server/models/newLead";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { MdDeleteForever } from "react-icons/md";
+import DeleteLead from "./components/deleteLead";
 import NewLead from "./components/newLead";
 
 const prisma = new PrismaClient();
@@ -29,6 +31,7 @@ export default async function Home() {
             className="relative shadow card bg-base-200"
             key={`lead-${lead.id}`}
           >
+            <DeleteLead leadId={lead.id as string} />
             <Link className="absolute right-3 top-3" href={`/leads/${lead.id}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
