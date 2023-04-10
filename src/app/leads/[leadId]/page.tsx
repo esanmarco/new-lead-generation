@@ -32,7 +32,12 @@ export default async function LeadPage({
         <h3>Lead Notes</h3>
         <NewNote leadId={details.id} />
         <hr className="my-5" />
-        {JSON.stringify(details.notes)}
+        {details.notes.map((note) => (
+          <div key={note.id} className="p-3 card bg-base-200">
+            <p>{note.content}</p>
+            <p>{new Intl.DateTimeFormat("en-US").format(note.createdAt)}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
